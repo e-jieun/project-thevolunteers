@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,13 +10,104 @@
 
   </style>
 </head>
+
 <body>
   <div id="root">
-    <div id="video-frame"></div>
+    <div id="video-frame">
+      <!-- <img src="./SVG/videoframe.svg" alt="videoframe"> -->
+      <div>테이프 들어갈 공간있는 박스</div>
+      <div>테이프 머리</div>
+      <div>
+        <div>
+          <img src="./SVG/tapeimg.svg" alt="tapeimg" width="200px" height="200px" data-move="1">
+          <img src="./SVG/reelimg.svg" alt="reelimg" width="200px" height="200px" data-move="0">
+        </div>
+        <div>
+          <img src="./SVG/tapeimg.svg" alt="tapeimg" width="200px" height="200px" data-move="1">
+          <img src="./SVG/reelimg.svg" alt="reelimg" width="200px" height="200px" data-move="0">
+        </div>
+      </div>
+    </div>
   </div>
   <script>
+    // variable declaration
+    const colorObj = {
+      colorBk: '#261D23',
+      colorDp: '#8C4D88',
+      colorGp: '#734C70',
+      colorPp: '#F2B6EE',
+      colorGr: '#81798C'
+    }
+    let hun = 100;
+    // *
+    document.body.setAttribute('style',`margin: 0; padding: 0;`);
+    // #root
     const root = document.getElementById('root');
+    root.setAttribute('style',`width; ${hun}vw; height: ${hun}vh;`);
+    
+    // videCon, videoFrame
+    const videoCon = document.querySelector('#video-frame');
+    // const videoFr = videoCon.firstElementChild;
+    const tapeCon = videoCon.lastElementChild;
+    // console.log(videoCon);
+    // console.log(videoFr);
 
+    // videoFr.setAttribute('style',`width: ${hun}vmin; height: ${hun}vmin; transform: rotate(${hun/10*9}deg); position: fixed;`)
+    // videoFr.style.transform = `rotate(${hun/10*9}deg)`;
+    console.log(tapeCon);
+    tapeCon.setAttribute('style',`width: ${hun}vw; height: ${hun}vh; border: 1px solid; display: grid; justify-content: space-around;`)
+    
+    console.log(tapeCon.children);
+    const tapeChildCon = tapeCon.children;
+
+    // ?테이프 부분을 겹쳐주려면 for()이나 .forEach()를 사용하면 중첩해서 사용해줘야 한다, 아니면 첫번째 tapeChildCon에만 적용이 됐다
+    const tapeChild = Array.from(tapeChildCon);
+    // console.log(tapeChild);
+    // tapeChild.forEach((con, index) => {
+    //   con.children[index].style.position = 'absolute';
+    // })
+    // 
+    for(let x = 0; x < tapeChildCon.length; x++){
+      for(let i = 0; i < tapeChildCon[x].children.length; i++){
+        tapeChildCon[x].children[i].style.position = 'absolute';
+        // console.log(tapeChildCon[i].children[i]);
+      }
+    }
+    // dataset을 넣어뒀으니까 그 이미지 태그에만 넣기
+    const wheel = [
+      {transform: 'rotate(0) scale(1)'},
+      {transform: 'rotate(360deg) scale(1)'}
+    ];
+    const wheelTime = {
+      duration: 3000,
+      iterations: 100,
+    }
+    const tape = [
+      {transform: 'rotate(360deg) scale(1)'},
+      {transform: 'rotate(0) scale(1)'}
+    ];
+    const tapeTime = {
+      duration: 10000,
+      iterations: 100,
+    }
+    
+    // ?되긴 되는데
+    // tapeChildCon[0].children[0].animate(wheel, wheelTime);
+    // tapeChildCon[1].children[0].animate(wheel, wheelTime);
+    const imgItem = document.getElementsByTagName('img');
+    console.log(imgItem);
+    const img = Array.from(imgItem);
+    console.log(img);
+    img.forEach((img, index) => {
+      // data-move='1'
+      if(img.dataset.move === '1'){
+        img.animate(wheel, wheelTime);
+      // data-move='0'
+      } else{
+        img.animate(tape, tapeTime);
+      }
+    })
   </script>
 </body>
+
 </html>
