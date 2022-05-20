@@ -23,6 +23,7 @@
       colorFf: '#fff'
     }
 
+    // display와 그 외의 속성을 제어할 함수
     function display(element, display='flex', align='center', justify='center', direction = 'row') {
       if (typeof display === 'string' && typeof align === 'string' && typeof justify === 'string') {
         element.style.display = display;
@@ -80,7 +81,7 @@
     // display(divCon, 'grid');
     divcon.forEach(element => display(element, 'grid'));
     
-    
+    // 멤버별 사진 이미지 태그 부분 style
     const img = document.getElementsByTagName('img');
     console.log(img);
     const imgItemArr = Array.from(img);
@@ -95,6 +96,7 @@
       }
     });
     
+    // 멤버별 이름 텍스트 부분 style
     const divName = document.getElementsByClassName('name');
     console.log(divName);
     const name = Array.from(divName);

@@ -31,6 +31,7 @@
         </div>
       </div>
     </div>
+    <div id="tape-title"></div>
   </div>
   <script>
     // <!--*variable declaration-->
@@ -39,9 +40,37 @@
       colorDp: '#8C4D88',
       colorGp: '#734C70',
       colorPp: '#F2B6EE',
-      colorGr: '#81798C'
+      colorGr: '#81798C', 
+      colorFf: '#fff'
     }
     let hun = 100;
+    
+    function display(element, display='flex', align='center', justify='center', direction = 'row') {
+      if (typeof display === 'string' && typeof align === 'string' && typeof justify === 'string') {
+        element.style.display = display;
+        element.style.alignItems = align;
+        element.style.justifyContent = justify;
+        element.style.flexDirection = direction;
+        console.log(element);
+      }
+    }
+
+    function size(element, width, height = null){
+      // element는 조건식에서 제외해주자, 값이 문자열로 들어오면 됨
+      if(typeof width === 'string'){
+        element.style.width = width;
+        element.style.height = height;
+      } else{
+        console.error('parameter is not string');
+      }
+    }
+
+    function rotate(element, deg = 90){
+      if(typeof deg === 'number'){
+        element.style.transform = `rotate(${deg}deg)`;
+      }
+    }
+
     // <!-- *document.body -->
     document.body.setAttribute('style',`margin: 0; padding: 0;`);
     
@@ -145,6 +174,47 @@
         element.textContent = '';
       }
     })
+
+    // <!--*tape title-->
+    const tapeTitle = document.getElementById('tape-title');
+    console.log(tapeTitle);
+    tapeTitle.setAttribute('style',`width: ${hun}vw; height: ${hun}vh; position: absolute; top: 0; z-index: 2;`);
+    // display속성과 그 외의 속성을 조절해주는 함수 display calling
+    display(tapeTitle);
+
+    function appendName(element){
+      if(element.tagName !== null && element.tagName !== ''){
+        return element.tagName;
+      }
+    }
+    const tapeTitleBg = document.createElement(appendName(tapeTitle)); 
+    console.dir(tapeTitleBg);
+    tapeTitleBg.classList = 'tape-bg-con';
+    tapeTitle.appendChild(tapeTitleBg); //자식요소로 div가 생겼다
+    console.log(tapeTitle);
+
+    // <!--todo: append한 자식요소를 식별하기 => titleBg-->
+    // title img와 div text를 감싸는 컨테이너 배경 부분
+    const titleBg = document.querySelector('.tape-bg-con');
+    console.log(titleBg);
+    display(titleBg);
+    // <!--todo: 배경 크기 스타일링-->
+    titleBg.setAttribute('style',`width: ${hun/2}vw; height: ${hun/2}vh; background: ${colorObj.colorFf}`);
+
+    // <!--todo: titleBg>img(로고)+div(한글 더 발룬티어스)-->
+    // prepend할 img태그 심어주기
+    const makeImg = document.createElement('img');
+    const makeTitle = document.createElement(appendName(tapeTitleBg));
+    makeImg.src = './SVG/tapename.png';
+    // 회전 조절 function calling -> rotate(element, deg = 90);
+    rotate(makeImg);
+    // 사이즈를 function calling -> size(element, width, height);
+    size(makeImg, `${hun/1}vw`);
+    makeTitle.textContent = ':더 발룬티어스';
+    // prepend(img+div)
+    titleBg.append(makeImg, makeTitle);
+    
+
 
   </script>
 </body>
