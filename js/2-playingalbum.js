@@ -68,9 +68,10 @@ console.log(text);
 text.forEach((element, index) => {
   element.style.color = `${colorObj.colorFf}`;
   if (index % 2 === 0) {
-    element.textContent = 'Now Playing'
-    element.style.fontSize = `${hun/(hun/10*6)}rem`;
+    element.textContent = 'Now Playing';
+    element.style.fontFamily = 'Inter';
     element.style.fontWeight = `${hun*3}`;
+    element.style.marginBottom = '1vh';
   } else {
     element.textContent = 'THE VOLUNTEERS'
     element.style.fontSize = `${hun/(hun/2)}rem`;
