@@ -6,3 +6,4 @@ document.body.setAttribute('style', `margin: 0; padding: 0; box-sizing: border-b
 // <!-- *#root -->
 const root = document.getElementById('root');
 root.setAttribute('style', `width; ${hun}vw; height: ${hun}vh;`);
+root.style.fontFamily = 'Black Han Sans, League Gothic, Inter';
