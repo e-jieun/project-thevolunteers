@@ -36,7 +36,7 @@ console.log(conOneFirst);
 // conOneFirst style
 display(conOneFirst, 'grid', 'center', 'center');
 conOneFirst.style.background = `${colorObj.colorGr}`;
-conOneFirst.style.marginBottom = `${hun/20}px`;
+// conOneFirst.style.marginBottom = `${hun/20}px`;
 
 // 2. conOne의 첫번쨰 아이템에 2개의 컨테이너 태그를 만들어주고
 // conOne.firstElementChild > div*2
@@ -53,8 +53,9 @@ console.log(conOneFirst.children);
 
 // conOneFirst.children
 const conOneTextCon = conOneFirst.firstElementChild;
-const conTwoAlbumCon = conOneFirst.lastElementChild;
 console.dir(conOneTextCon);
+
+const conTwoAlbumCon = conOneFirst.lastElementChild;
 console.log(conTwoAlbumCon);
 
 // 3. conOne > div:nth-child(1) > firstElementchild => text: now playing/the volunteers/___
@@ -97,3 +98,16 @@ console.dir(album);
 // https://developer.mozilla.org/ko/docs/Web/HTML/Element/img#%EC%9D%B4%EB%AF%B8%EC%A7%80%EB%A5%BC_%EA%B0%80%EC%A0%B8%EC%98%AC_%EC%88%98_%EC%97%86%EC%9D%84_%EB%95%8C
 album.src = './SVG/jacket.png';
 album.setAttribute('style',`width: ${hun*2}px; height: ${hun*2}px;`);
+
+// *youtube 영상 부분
+const ytiFrame = document.getElementsByTagName('iframe');
+// console.log(ytiFrame);
+const ytArr = Array.from(ytiFrame);
+console.log(ytArr);
+ytArr.map(elem => {elem.style.margin = 0});
+
+const video = document.getElementsByClassName('video');
+console.log(video);
+const videoArr = Array.from(video);
+videoArr.map(elem => {size(elem, '100%', '315px')});
+
