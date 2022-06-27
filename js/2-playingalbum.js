@@ -58,11 +58,6 @@ console.dir(conOneTextCon);
 console.log(conTwoAlbumCon);
 
 // 3. conOne > div:nth-child(1) > firstElementchild => text: now playing/the volunteers/___
-// => conOneTextCon
-// <!--*dataset 당장은 필요가 없어서 우선 주석처리-->
-// conOneTextCon.setAttribute('data-firstitem',`1`);
-// console.log(conOneTextCon);
-// textCon의 자식요소 => text 부분
 for (let i = 0; i < itemArr.length; i++) {
   const textItem = document.createElement(appendName(conOne));
   conOneTextCon.append(textItem);
