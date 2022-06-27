@@ -11,10 +11,11 @@ import {
 
 // <!-- *#video-frame -->
 const videoCon = document.querySelector('#video-frame');
+videoCon.style.overflow = 'hidden';
 // <!-- *#video-frame>div:nth-child(3)-->
 const tapeCon = videoCon.lastElementChild;
 console.log(tapeCon);
-tapeCon.setAttribute('style', `width: ${hun}vw; height: ${hun}vh; border: 1px solid; display: grid; align-items: center; justify-content: space-around; position: relative; right: 4vh;`);
+tapeCon.setAttribute('style', `width: ${hun}vw; height: ${hun-1}vh; border: 1px solid; display: grid; align-items: center; justify-content: space-around; position: relative; right: 4vh;`);
 
 // <!--*.tape-con-->
 console.log(tapeCon.children);
